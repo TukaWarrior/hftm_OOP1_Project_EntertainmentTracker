@@ -1,76 +1,93 @@
 package hftm.lucabuetzberger;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class TVShow {
 
     //Fields
-    private String tvshowTitle;
-    private String tvshowDirector;
-    private int tvshowReleaseYear;
-    private String tvshowGenre;
-    private int tvshowEpisodes;
-    private int tvshowRating;
+    private SimpleStringProperty tvshowTitle = new SimpleStringProperty();
+    private SimpleStringProperty tvshowDirector = new SimpleStringProperty();
+    private SimpleIntegerProperty tvshowReleaseYear = new SimpleIntegerProperty();
+    private SimpleStringProperty tvshowGenre = new SimpleStringProperty();
+    private SimpleIntegerProperty tvshowEpisodes = new SimpleIntegerProperty();
+    private SimpleIntegerProperty tvshowRating = new SimpleIntegerProperty();
 
     //Constructor
     public TVShow(){
     }
     public TVShow(String tvshowTitle, String tvshowDirector, int tvshowReleaseYear, String tvshowGenre, int tvshowEpisodes, int tvshowRating){
-        this.tvshowTitle = tvshowTitle;
-        this.tvshowDirector = tvshowDirector;
-        this.tvshowReleaseYear = tvshowReleaseYear;
-        this.tvshowGenre = tvshowGenre;
-        this.tvshowEpisodes = tvshowEpisodes;
-        this.tvshowRating = tvshowRating;
+        this.setTVShowTitle(tvshowTitle);
+        this.setTVShowDirector(tvshowDirector);
+        this.setTVShowReleaseYear(tvshowReleaseYear);
+        this.setTVShowGenre(tvshowGenre);
+        this.setTVShowEpisodes(tvshowEpisodes);
+        this.setTVShowRating(tvshowRating);
     }
 
     //TVShow Title
+    public SimpleStringProperty tvshowTitleProperty(){
+        return this.tvshowTitle;
+    }
     public String getTVShowTitle(){
-        return tvshowTitle;
+        return this.tvshowTitle.get();
     }
     public void setTVShowTitle(String tvShowTitle){
-        this.tvshowTitle = tvShowTitle;
+        this.tvshowTitle.set(tvShowTitle);
     }
 
     //TVShow Director
+    public SimpleStringProperty tvshowDirectorProperty(){
+        return this.tvshowDirector;
+    }
     public String getTVShowDirector(){
-        return tvshowDirector;
+        return this.tvshowDirector.get();
     }
     public void setTVShowDirector(String tvShowDirector){
-        this.tvshowDirector = tvShowDirector;
+        this.tvshowDirector.set(tvShowDirector);
     }
 
     //TVShow ReleaseYear
-    public int getTVShowReleaseYear(){
-        return tvshowReleaseYear;
+    public SimpleIntegerProperty tvshowReleaseYearProperty(){
+        return this.tvshowReleaseYear;
     }
-    public void setTVShowReleaseYear(int tvShowReleaseYear){
-        this.tvshowReleaseYear = tvShowReleaseYear;
+    public Integer getTVShowReleaseYear(){
+        return this.tvshowReleaseYear.get();
+    }
+    public void setTVShowReleaseYear(Integer tvShowReleaseYear){
+        this.tvshowReleaseYear.set(tvShowReleaseYear);
     }
 
     //TVShow Genre
+    public SimpleStringProperty tvshowGenreProperty(){
+        return this.tvshowGenre;
+    }
     public String getTVShowGenre(){
-        return tvshowGenre;
+        return this.tvshowGenre.get();
     }
     public void setTVShowGenre(String tvShowGenre){
-        this.tvshowGenre = tvShowGenre;
+        this.tvshowGenre.set(tvShowGenre);
     }
 
     //TVShow Length
-    public int getTVShowEpisodes(){
-        return tvshowEpisodes;
+    public SimpleIntegerProperty tvshowEpisodesProperty(){
+        return this.tvshowEpisodes;
     }
-    public void setTVShowEpisodes(int tvShowEpisodes){
-        this.tvshowEpisodes = tvShowEpisodes;
+    public Integer getTVShowEpisodes(){
+        return this.tvshowEpisodes.get();
+    }
+    public void setTVShowEpisodes(Integer tvShowEpisodes){
+        this.tvshowEpisodes.set(tvShowEpisodes);
     }
 
     //TVShow Rating
-    public int getTVShowRating(){
-        return tvshowRating;
+    public SimpleIntegerProperty tvshowRatingProperty(){
+        return this.tvshowRating;
     }
-    public void setTVShowRating(int tvShowRating){
-        this.tvshowRating = tvShowRating;
+    public Integer getTVShowRating(){
+        return this.tvshowRating.get();
     }
-
-    public void showTVShowAttributes() {
-        System.out.println(tvshowTitle+" "+tvshowDirector+" "+tvshowReleaseYear+" "+tvshowGenre+" "+tvshowEpisodes+" "+tvshowRating);
+    public void setTVShowRating(Integer tvShowRating){
+        this.tvshowRating.set(tvShowRating);
     }
 }

@@ -1,76 +1,93 @@
 package hftm.lucabuetzberger;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Movie {
 
     //Fields
-    private String movieTitle;
-    private String movieDirector;
-    private int movieReleaseYear;
-    private String movieGenre;
-    private int movieLength;
-    private int movieRating;
+    private SimpleStringProperty movieTitle = new SimpleStringProperty();
+    private SimpleStringProperty movieDirector = new SimpleStringProperty();
+    private SimpleIntegerProperty movieReleaseYear = new SimpleIntegerProperty();
+    private SimpleStringProperty movieGenre = new SimpleStringProperty();
+    private SimpleIntegerProperty movieLength = new SimpleIntegerProperty();
+    private SimpleIntegerProperty movieRating = new SimpleIntegerProperty();
 
     //Constructor
     public Movie() {
     }
     public Movie(String movieTitle, String movieDirector, int movieReleaseYear, String movieGenre, int movieLength, int movieRating) {
-        this.movieTitle = movieTitle;
-        this.movieDirector = movieDirector;
-        this.movieReleaseYear = movieReleaseYear;
-        this.movieGenre = movieGenre;
-        this.movieLength = movieLength;
-        this.movieRating = movieRating;
+        this.setMovieTitle(movieTitle);
+        this.setMovieDirector(movieDirector);
+        this.setMovieReleaseYear(movieReleaseYear);
+        this.setMovieGenre(movieGenre);
+        this.setMovieLength(movieLength);
+        this.setMovieRating(movieRating);
     }
 
     //Movie Title
+    public SimpleStringProperty movieTitleProperty() {
+        return this.movieTitle;
+    }
     public String getMovieTitle() {
-        return movieTitle;
+        return this.movieTitle.get();
     }
     public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
+        this.movieTitle.set(movieTitle);
     }
 
     //Movie Director
+    public SimpleStringProperty movieDirectorProperty() {
+        return this.movieDirector;
+    }
     public String getMovieDirector() {
-        return movieDirector;
+        return this.movieDirector.get();
     }
     public void setMovieDirector(String movieDirector) {
-        this.movieDirector = movieDirector;
+        this.movieDirector.set(movieDirector);
     }
 
-    //Movie Release Year
-    public Integer getMovieReleaseYear() {
-        return movieReleaseYear;
+    //Movie ReleaseYear
+    public SimpleIntegerProperty movieReleaseYearProperty() {
+        return this.movieReleaseYear;
     }
-    public void setMovieReleaseYear(int movieReleaseYear) {
-        this.movieReleaseYear = movieReleaseYear;
+    public Integer getMovieReleaseYear() {
+        return this.movieReleaseYear.get();
+    }
+    public void setMovieReleaseYear(Integer movieReleaseYear) {
+        this.movieReleaseYear.set(movieReleaseYear);
     }
 
     //Movie Genre
+    public SimpleStringProperty movieGenreProperty() {
+        return this.movieGenre;
+    }
     public String getMovieGenre() {
-        return movieGenre;
+        return this.movieGenre.get();
     }
     public void setMovieGenre(String movieGenre) {
-        this.movieGenre = movieGenre;
+        this.movieGenre.set(movieGenre);
     }
 
     //Movie Length
-    public int getMovieLength() {
-        return movieLength;
+    public SimpleIntegerProperty movieLengthProperty() {
+        return this.movieLength;
     }
-    public void setMovieLength(int movieLength) {
-        this.movieLength = movieLength;
+    public Integer getMovieLength() {
+        return this.movieLength.get();
+    }
+    public void setMovieLength(Integer movieLength) {
+        this.movieLength.set(movieLength);
     }
 
     //Movie Rating
-    public int getMovieRating() {
-        return movieRating;
+    public SimpleIntegerProperty movieRatingProperty() {
+        return this.movieRating;
     }
-    public void setMovieRating(int movieRating) {
-        this.movieRating = movieRating;
+    public Integer getMovieRating() {
+        return this.movieRating.get();
     }
-
-    public void showMovieAttributes() {
-        System.out.println(movieTitle+" "+movieDirector+" "+movieReleaseYear+" "+movieGenre+" "+movieLength+" "+movieReleaseYear);
+    public void setMovieRating(Integer movieRating) {
+        this.movieRating.set(movieRating);
     }
 }

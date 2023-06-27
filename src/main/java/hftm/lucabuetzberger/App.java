@@ -1,99 +1,88 @@
 package hftm.lucabuetzberger;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
-    private static Scene scene;
+    //Observable List
+    private static ObservableList<Book> bookList = FXCollections.observableArrayList();
+    public static ObservableList<Book> getBookList() {
+        return bookList;
+    }
+    private static ObservableList<Movie> movieList = FXCollections.observableArrayList();
+    public static ObservableList<Movie> getMovieList() {
+        return movieList;
+    }
+    private static ObservableList<Game> gameList = FXCollections.observableArrayList();
+    public static ObservableList<Game> getGameList() {
+        return gameList;
+    }
+    private static ObservableList<TVShow> tvshowList = FXCollections.observableArrayList();
+    public static ObservableList<TVShow> getTVShowList() {
+        return tvshowList;
+    }
 
+    //Testing
+    public App() {
+        bookList.add(new Book("The Shining", "Steven King", 1998, "Horror", 447, 86));
+        bookList.add(new Book("To Kill a Mockingbird", "Harper Lee", 1960, "Roman", 281, 95));
+        bookList.add(new Book("1984", "George Orwell", 1949, "Dystopisch", 328, 92));
+
+        movieList.add(new Movie("The Lord of the Rings: The Fellowship of the Ring", "J. R. R. Tolkien", 2001, "Fantasy", 178, 92));
+        movieList.add(new Movie("Back to the Future", "Robert Zemeckis", 1985, "Sci-Fi", 116, 87));
+        movieList.add(new Movie("Forrest Gump", "Robert Zemeckis", 1994, "Drama", 142, 88));
+
+        gameList.add(new Game("The Legend of Zelda: Ocarina of Time", "Nintendo EAD", 1998, "Action-Adventure", 39, 99));
+        gameList.add(new Game("Metroid Prime", "Retro Studios", 2002, "Metroidvania", 17, 97));
+        gameList.add(new Game("Outer Wilds", "Mobius Digital", 2019, "Exploration", 26, 100));
+
+        tvshowList.add(new TVShow("The Expanse", "Mark Fergus", 2016, "Sci-Fi", 10, 85));
+        tvshowList.add(new TVShow("The Boys", "Eric Kripk", 2016, "Superhero", 24, 87));
+        tvshowList.add(new TVShow("Final Space", "Olan Rogers", 2018, "Comedy", 36, 95));
+    }
+
+    //Main Method
     public static void main(String[] args) {
-        //Books
-        System.out.println("Books:");
-        Book b1 = new Book("The Shining", "Steven King", 1998, "Horror", 447, 86);
-        Book b2 = new Book("To Kill a Mockingbird", "Harper Lee", 1960, "Roman", 281, 95);
-        Book b3 = new Book();
-        b3.setBookTitle("1984");
-        b3.setBookAuthor("George Orwell");
-        b3.setBookReleaseYear(1949);
-        b3.setBookGenre("Dystopisch");
-        b3.setBookPages(328);
-        b3.setBookRating(92);
-
-        b1.showBookAttributes();
-        b2.showBookAttributes();
-        b3.showBookAttributes();
-
-        //Movies
-        System.out.println("Movies:");
-        Movie m1 = new Movie("The Lord of the Rings: The Fellowship of the Ring", "J. R. R. Tolkien", 2001, "Fantasy", 178, 92);
-        Movie m2 = new Movie("Back to the Future", "Robert Zemeckis", 1985, "Sci-Fi", 116, 87);
-        Movie m3 = new Movie();
-        m3.setMovieTitle("Forrest Gump");
-        m3.setMovieDirector("Robert Zemeckis");
-        m3.setMovieReleaseYear(1994);
-        m3.setMovieGenre("Drama");
-        m3.setMovieLength(142);
-        m3.setMovieRating(88);
-
-        m1.showMovieAttributes();
-        m2.showMovieAttributes();
-        m3.showMovieAttributes();
-
-        System.out.println("Games:");
-        Game g1 = new Game("The Legend of Zelda: Ocarina of Time", "Nintendo EAD", 1998, "Action-Adventure", 39, 99);
-        Game g2 = new Game("Metroid Prime", "Retro Studios", 2002, "Metroidvania", 17, 97);
-        Game g3 = new Game();
-        g3.setGameTitle("Outer Wilds");
-        g3.setGameDeveloper("Mobius Digital");
-        g3.setGameReleaseYear(2019);
-        g3.setGameGenre("Exploration");
-        g3.setGamePlaytime(26);
-        g3.setGameRating(100);
-
-        g1.showGameAttributes();
-        g2.showGameAttributes();
-        g3.showGameAttributes();
-
-        System.out.println("TVShows:");
-        TVShow t1 = new TVShow("The Expanse", "Mark Fergus", 2016, "Sci-Fi", 10, 85);
-        TVShow t2 = new TVShow("The Boys", "Eric Kripk", 2016, "Superhero", 24, 87);
-        TVShow t3 = new TVShow();
-        t3.setTVShowTitle("Final Space");
-        t3.setTVShowDirector("Olan Rogers");
-        t3.setTVShowReleaseYear(2018);
-        t3.setTVShowGenre("Comedy");
-        t3.setTVShowEpisodes(36);
-        t3.setTVShowRating(95);
-
-        t1.showTVShowAttributes();
-        t2.showTVShowAttributes();
-        t3.showTVShowAttributes();
-
         launch();
     }
 
+    //FXML Initialize Scene
+    private static Scene scene;
+
+    //FXML Scene Start
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        FXMLLoader fxmlLoader = createFXMLLoader("PrimaryView.fxml");
+        App.scene = new Scene(loadFXML(fxmlLoader), 640, 480);
+        stage.setTitle("Entertainment Tracker");
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setSceneRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    //FXML Scene Change
+    public static void switchToPrimaryView(){
+        FXMLLoader fxmlLoader = createFXMLLoader("PrimaryView.fxml");
+        App.scene.setRoot(loadFXML(fxmlLoader));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+    //FXML Loader
+    private static FXMLLoader createFXMLLoader(String fxml)  {
+        return new FXMLLoader(App.class.getResource("/" + fxml));
+    }
+    private static Parent loadFXML(FXMLLoader fxmlLoader)  {
+        try {
+            return fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+        }
     }
 }
