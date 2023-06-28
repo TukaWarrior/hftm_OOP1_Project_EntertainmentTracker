@@ -1,10 +1,10 @@
 package hftm.lucabuetzberger;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import java.time.Year;
-
 
 public class TVShowNewController {
 
@@ -25,6 +25,8 @@ public class TVShowNewController {
     private TextField txtf_tvshowEpisodes;
     @FXML
     private TextField txtf_tvshowRating;
+    @FXML
+    private Button onSave;
     //endregion
 
     @FXML
@@ -70,6 +72,16 @@ public class TVShowNewController {
                 }
             }
         });
+        //endregion
+
+        //region Enable/Disable Save Button
+        BooleanBinding booleanBindingTextBox = txtf_tvshowTitle.textProperty().isEmpty()
+                .or(txtf_tvshowDirector.textProperty().isEmpty())
+                .or(txtf_tvshowReleaseYear.textProperty().isEmpty())
+                .or(txtf_tvshowGenre.textProperty().isEmpty())
+                .or(txtf_tvshowEpisodes.textProperty().isEmpty())
+                .or(txtf_tvshowRating.textProperty().isEmpty());
+        onSave.disableProperty().bind(booleanBindingTextBox);
         //endregion
     }
 

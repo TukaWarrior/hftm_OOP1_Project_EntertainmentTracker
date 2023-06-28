@@ -1,8 +1,9 @@
 package hftm.lucabuetzberger;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import java.time.Year;
 
 public class GameNewController {
@@ -24,6 +25,8 @@ public class GameNewController {
     private TextField txtf_gamePlaytime;
     @FXML
     private TextField txtf_gameRating;
+    @FXML
+    private Button onSave;
     //endregion
 
     @FXML
@@ -69,6 +72,16 @@ public class GameNewController {
                 }
             }
         });
+        //endregion
+
+        //region Enable/Disable Save Button
+        BooleanBinding booleanBindingTextBox = txtf_gameTitle.textProperty().isEmpty()
+                .or(txtf_gameDeveloper.textProperty().isEmpty())
+                .or(txtf_gameReleaseYear.textProperty().isEmpty())
+                .or(txtf_gameGenre.textProperty().isEmpty())
+                .or(txtf_gameGenre.textProperty().isEmpty())
+                .or(txtf_gameRating.textProperty().isEmpty());
+        onSave.disableProperty().bind(booleanBindingTextBox);
         //endregion
     }
 

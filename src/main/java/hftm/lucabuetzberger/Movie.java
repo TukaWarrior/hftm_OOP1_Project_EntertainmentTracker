@@ -98,4 +98,17 @@ public class Movie {
         this.movieRating.set(movieRating);
     }
     //endregion
+
+    //region All Movie attributes (for sorting function)
+    public String getMovieAttributes() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append(movieTitle.get()).append(" ");
+        attributes.append(movieDirector.get()).append(" ");
+        attributes.append(movieReleaseYear.get()).append(" ");
+        attributes.append(movieGenre.get()).append(" ");
+        attributes.append(movieLength.get()).append(" ");
+        attributes.append(movieRating.get());
+        return attributes.toString().toLowerCase();
+    }
+    //endregion
 }

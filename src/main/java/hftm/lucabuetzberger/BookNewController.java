@@ -1,6 +1,8 @@
 package hftm.lucabuetzberger;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.time.Year;
 
@@ -23,6 +25,8 @@ public class BookNewController {
     private TextField txtf_bookPages;
     @FXML
     private TextField txtf_bookRating;
+    @FXML
+    private Button onSave;
     //endregion
 
     @FXML
@@ -68,6 +72,16 @@ public class BookNewController {
                 }
             }
         });
+        //endregion
+
+        //region Enable/Disable Save Button
+        BooleanBinding booleanBindingTextBox = txtf_bookTitle.textProperty().isEmpty()
+                .or(txtf_bookAuthor.textProperty().isEmpty())
+                .or(txtf_bookReleaseYear.textProperty().isEmpty())
+                .or(txtf_bookGenre.textProperty().isEmpty())
+                .or(txtf_bookPages.textProperty().isEmpty())
+                .or(txtf_bookRating.textProperty().isEmpty());
+        onSave.disableProperty().bind(booleanBindingTextBox);
         //endregion
     }
 

@@ -1,9 +1,10 @@
 package hftm.lucabuetzberger;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.time.Year;
-
 
 public class MovieNewController {
 
@@ -24,6 +25,8 @@ public class MovieNewController {
     private TextField txtf_movieLength;
     @FXML
     private TextField txtf_movieRating;
+    @FXML
+    private Button onSave;
     //endregion
 
     @FXML
@@ -69,6 +72,16 @@ public class MovieNewController {
                 }
             }
         });
+        //endregion
+
+        //region Enable/Disable Save Button
+        BooleanBinding booleanBindingTextBox = txtf_movieTitle.textProperty().isEmpty()
+                .or(txtf_movieDirector.textProperty().isEmpty())
+                .or(txtf_movieReleaseYear.textProperty().isEmpty())
+                .or(txtf_movieGenre.textProperty().isEmpty())
+                .or(txtf_movieLength.textProperty().isEmpty())
+                .or(txtf_movieRating.textProperty().isEmpty());
+        onSave.disableProperty().bind(booleanBindingTextBox);
         //endregion
     }
 

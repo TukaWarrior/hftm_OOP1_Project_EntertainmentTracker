@@ -98,4 +98,17 @@ public class Book {
         this.bookRating.set(bookRating);
     }
     //endregion
+
+    //region All Book Attributes (for sorting function)
+    public String getBookAttributes() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append(bookTitle.get()).append(" ");
+        attributes.append(bookAuthor.get()).append(" ");
+        attributes.append(bookReleaseYear.get()).append(" ");
+        attributes.append(bookGenre.get()).append(" ");
+        attributes.append(bookPages.get()).append(" ");
+        attributes.append(bookRating.get());
+        return attributes.toString().toLowerCase();
+    }
+    //endregion
 }

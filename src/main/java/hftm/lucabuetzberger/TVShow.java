@@ -98,4 +98,17 @@ public class TVShow {
         this.tvshowRating.set(tvShowRating);
     }
     //endregion
+
+    //region All TVShow attributes (for sorting function)
+    public String getTVShowAttributes() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append(tvshowTitle.get()).append(" ");
+        attributes.append(tvshowDirector.get()).append(" ");
+        attributes.append(tvshowReleaseYear.get()).append(" ");
+        attributes.append(tvshowGenre.get()).append(" ");
+        attributes.append(tvshowEpisodes.get()).append(" ");
+        attributes.append(tvshowRating.get());
+        return attributes.toString().toLowerCase();
+    }
+    //endregion
 }

@@ -98,4 +98,17 @@ public class Game {
         this.gameRating.set(gameRating);
     }
     //endregion
+
+    //region All Game attributes (for sorting function)
+    public String getGameAttributes() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append(gameTitle.get()).append(" ");
+        attributes.append(gameDeveloper.get()).append(" ");
+        attributes.append(gameReleaseYear.get()).append(" ");
+        attributes.append(gameGenre.get()).append(" ");
+        attributes.append(gamePlaytime.get()).append(" ");
+        attributes.append(gameRating.get());
+        return attributes.toString().toLowerCase();
+    }
+    //endregion
 }
